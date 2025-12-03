@@ -21,6 +21,17 @@ async function getAuthorInfo(evt) {
 
     const author = data[0];
 
+    // --- Format dates nicely ---
+    const options = { year: "numeric", month: "long", day: "numeric" };
+
+    let dobFormatted = author.dob
+      ? new Date(author.dob).toLocaleDateString("en-US", options)
+      : "";
+
+    let dodFormatted = author.dod
+      ? new Date(author.dod).toLocaleDateString("en-US", options)
+      : "";
+
     const authorInfo = document.querySelector("#authorInfo");
     authorInfo.innerHTML = `
       <h2>${author.firstName} ${author.lastName}</h2>
@@ -28,8 +39,12 @@ async function getAuthorInfo(evt) {
         src="${author.portrait}"
         alt="Portrait of ${author.firstName} ${author.lastName}"
         class="img-fluid mb-3">
-      <p><strong>Born:</strong> ${author.dob}</p>
-      ${author.dod ? `<p><strong>Died:</strong> ${author.dod}</p>` : ""}
+      ${dobFormatted ? `<p><strong>Born:</strong> ${dobFormatted}</p>` : ""}
+      ${
+        dodFormatted
+          ? `<p><strong>Died:</strong> ${dodFormatted}</p>`
+          : ""
+      }
       <p><strong>Profession:</strong> ${author.profession}</p>
       <p><strong>Country:</strong> ${author.country}</p>
       <p>${author.biography}</p>
