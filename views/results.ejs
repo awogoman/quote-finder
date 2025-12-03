@@ -6,7 +6,7 @@
       <span class="quill-icon">✒</span>
       <%= title || "Results" %>
     </h2>
-    
+
     <a href="/" class="btn btn-outline-primary mb-3">
       ⟵ Return to Home
     </a>
@@ -17,6 +17,7 @@
       <% for (let q of quotes) { %>
         <div class="quote-item mb-4">
           <p class="quote-text">“<%= q.quote %>”</p>
+
           <p class="mb-1">
             <em>
               <a href="#" id="<%= q.authorId %>" class="author-link">
@@ -24,6 +25,7 @@
               </a>
             </em>
           </p>
+
           <% if (typeof q.likes !== "undefined") { %>
             <p class="quote-meta mb-0">
               <strong>Likes:</strong>
@@ -33,27 +35,41 @@
         </div>
       <% } %>
     <% } %>
+  </div>
+</div>
 
-    <!-- bootstrap for author info -->
-    <div class="modal fade" id="authorModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5">Author Information</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div id="authorInfo"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
+<!-- Boostrap for author info -->
+<div class="modal fade" id="authorModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Author Information</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="authorInfo"></div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
-
-    <script src="/js/scripts.js"></script>
   </div>
+</div>
+
+<!-- JS -->
+<script src="/js/scripts.js"></script>
+
+<%- include("partials/footer.ejs") %>
 </div>
 
 <%- include("partials/footer.ejs") %>
